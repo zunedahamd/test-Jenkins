@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  static-site:
+    build: .
+    container_name: my-static-web
+    ports:
+      - "8082:80" # Isse 8082 par check karein
