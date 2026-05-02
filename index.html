@@ -3,1033 +3,903 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZUNED Tech India — IT Infrastructure & Web Development</title>
+<title>Zuned Tech India — New Delhi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #ffffff;
-    --bg2: #f5f7fa;
-    --surface: #eef1f5;
-    --accent: #0066ff;
-    --accent2: #ff4d6d;
-    --accent3: #22c55e;
-    --text: #111827;
-    --muted: #6b7280;
-    --border: rgba(0,102,255,0.15);
-    --glow: 0 0 40px rgba(0,102,255,0.12);
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0a0f2e;
+    --navy-mid: #111740;
+    --navy-light: #1c2460;
+    --electric: #3d6fff;
+    --electric-bright: #5c85ff;
+    --saffron: #ff8c00;
+    --saffron-light: #ffa333;
+    --white: #ffffff;
+    --off-white: #f0f2ff;
+    --text-muted: #8b92b8;
+    --text-mid: #c5cadf;
+    --border: rgba(255,255,255,0.08);
+    --glow: rgba(61,111,255,0.18);
+  }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg2);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
   }
 
-  /* Custom cursor */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
+  /* GRID NOISE TEXTURE */
+  body::before {
+    content: '';
     position: fixed;
-    top: 0; left: 0;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(61,111,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61,111,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
     pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-    mix-blend-mode: difference;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: all 0.15s ease;
-    opacity: 0.5;
+    z-index: 0;
   }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 100;
+    padding: 1.2rem 6%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(16px);
+    justify-content: space-between;
+    background: rgba(10,15,46,0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
+
   .logo {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
     font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.5px;
+    color: var(--white);
     text-decoration: none;
-  }
-  .logo span { color: var(--text); }
-  nav ul { list-style: none; display: flex; gap: 40px; }
-  nav ul a {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  nav ul a:hover { color: var(--accent); }
-  .nav-cta {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent) !important;
-    padding: 10px 24px;
-    font-size: 0.72rem !important;
-    letter-spacing: 0.12em;
-    transition: background 0.2s, color 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--accent) !important; color: #ffffff !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 60px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Grid bg */
-  .grid-bg {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
-    pointer-events: none;
-  }
-
-  /* Glowing orbs */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(80px);
-    opacity: 0.08;
-  }
-  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; animation: drift 8s ease-in-out infinite alternate; }
-  .orb2 { width: 350px; height: 350px; background: var(--accent2); bottom: 0; left: 20%; animation: drift 10s ease-in-out infinite alternate-reverse; }
-  @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.08); } }
-
-  .hero-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hero-label::before {
-    content: '';
-    display: block;
-    width: 40px; height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(3rem, 7vw, 7rem);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    max-width: 900px;
-    position: relative;
-  }
-  h1 em { font-style: normal; color: var(--accent); }
-  h1 .strike {
-    position: relative;
-    color: var(--muted);
-  }
-  h1 .strike::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    top: 50%;
-    height: 3px;
-    background: var(--accent2);
-    transform: rotate(-2deg);
-  }
-
-  .hero-sub {
-    margin-top: 32px;
-    font-size: 0.88rem;
-    line-height: 1.9;
-    color: var(--muted);
-    max-width: 480px;
-  }
-
-  .hero-btns {
-    margin-top: 48px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #ffffff;
-    border: none;
-    padding: 16px 36px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 700;
-    cursor: pointer;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-    transition: opacity 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-primary:hover { opacity: 0.85; box-shadow: 0 0 32px rgba(0,229,255,0.4); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 16px 36px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-stats {
-    position: absolute;
-    right: 60px;
-    bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    text-align: right;
-  }
-  .stat-val {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  /* Scrolling ticker */
-  .ticker-wrap {
-    background: var(--accent);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .ticker {
-    display: inline-block;
-    animation: ticker 30s linear infinite;
-  }
-  .ticker span {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #ffffff;
-    font-weight: 700;
-    padding: 0 40px;
-  }
-  .ticker span::before { content: '◆  '; }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* SECTIONS */
-  section {
-    padding: 100px 60px;
-  }
-
-  .section-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-label::before {
-    content: '';
-    width: 30px; height: 1px;
-    background: var(--accent);
-  }
-
-  h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-
-  /* SERVICES */
-  .services { background: var(--bg2); }
-
-  .services-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .service-card {
-    background: var(--surface);
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    height: 2px;
-    width: 0;
-    background: var(--accent);
-    transition: width 0.4s ease;
-  }
-  .service-card:hover::before { width: 100%; }
-  .service-card:hover { background: #e8edf5; }
-
-  .service-num {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 24px;
-    font-weight: 700;
-  }
-
-  .service-icon {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    display: block;
-    filter: grayscale(0.3);
-  }
-
-  h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 14px;
-    letter-spacing: -0.01em;
-  }
-
-  .service-desc {
-    font-size: 0.78rem;
-    line-height: 1.8;
-    color: var(--muted);
-  }
-
-  .service-tags {
-    margin-top: 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .tag {
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.2);
-    padding: 4px 10px;
-  }
-
-  /* PROCESS */
-  .process { position: relative; }
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 60px;
-    position: relative;
-  }
-  .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 28px; left: 0; right: 0;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .step {
-    padding: 0 30px;
-    position: relative;
-  }
-  .step-num {
-    width: 56px; height: 56px;
-    border: 1px solid var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--accent);
-    margin-bottom: 28px;
-    background: var(--bg2);
-    position: relative;
-    z-index: 1;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-  }
-  .step h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .step p {
-    font-size: 0.75rem;
-    line-height: 1.8;
-    color: var(--muted);
-  }
-
-  /* TECH STACK */
-  .stack { background: var(--bg2); }
-  .stack-header { margin-bottom: 60px; }
-
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 2px;
-  }
-
-  .stack-item {
-    background: var(--surface);
-    padding: 28px 20px;
-    text-align: center;
-    transition: background 0.2s, transform 0.2s;
-    cursor: default;
-  }
-  .stack-item:hover { background: #e8edf5; transform: translateY(-4px); }
-  .stack-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-  .stack-name {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* PRICING */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 60px;
-  }
-
-  .pricing-card {
-    background: var(--surface);
-    padding: 48px 40px;
-    position: relative;
-  }
-  .pricing-card.featured {
-    background: var(--accent);
-    color: #ffffff;
-  }
-  .pricing-card.featured .price-sub,
-  .pricing-card.featured .price-item { color: rgba(255,255,255,0.75); }
-  .pricing-card.featured h3 { color: #ffffff; }
-  .pricing-card.featured .tag { color: #ffffff; border-color: rgba(255,255,255,0.4); }
-
-  .price-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-  }
-  .pricing-card.featured .price-label { color: #ffffff; }
-
-  .price-val {
-    font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .pricing-card.featured .price-val { color: #ffffff; }
-
-  .price-sub {
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-bottom: 36px;
-  }
-
-  .price-items {
-    list-style: none;
-    margin-bottom: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .price-item {
-    font-size: 0.76rem;
-    color: var(--muted);
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  .price-item::before { content: '→'; color: var(--accent); font-size: 0.7rem; }
-  .pricing-card.featured .price-item::before { color: #ffffff; }
 
-  /* CONTACT */
-  .contact { background: var(--bg2); }
-  .contact-inner {
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--electric), var(--saffron));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .logo span { color: var(--saffron); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--electric);
+    color: #fff !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--electric-bright) !important; color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 6% 5rem;
+    overflow: hidden;
+  }
+
+  .hero-orb {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,111,255,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-orb-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, transparent 70%);
+    bottom: -50px; left: 10%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(61,111,255,0.12);
+    border: 1px solid rgba(61,111,255,0.3);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    color: var(--electric-bright);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--saffron);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 .accent { color: var(--electric-bright); }
+  h1 .saffron { color: var(--saffron); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--electric);
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--electric-bright); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-mid);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+
+  /* STATS */
+  .stats-strip {
+    position: relative;
+    z-index: 1;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 6%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-num .saffron { color: var(--saffron); }
+  .stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.4px; }
+
+  /* SECTIONS */
+  section { position: relative; padding: 6rem 6%; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--electric-bright);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  h2 .accent { color: var(--electric-bright); }
+
+  .section-desc {
+    color: var(--text-muted);
+    max-width: 540px;
+    font-size: 1rem;
+    margin-bottom: 3.5rem;
+    line-height: 1.7;
+  }
+
+  /* SERVICES */
+  #services { background: var(--navy-mid); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--navy-mid);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--navy-light); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.3px;
+  }
+
+  .service-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* WHY US */
+  .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+    height: 440px;
+  }
+
+  .why-card {
+    position: absolute;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    width: 220px;
+  }
+
+  .why-card:nth-child(1) { top: 0; left: 0; }
+  .why-card:nth-child(2) { top: 80px; right: 0; border-color: rgba(61,111,255,0.3); }
+  .why-card:nth-child(3) { bottom: 40px; left: 40px; }
+  .why-card:nth-child(4) { bottom: 0; right: 0; }
+
+  .why-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .why-card-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .why-card-text { color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; }
+
+  .connector-line {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(61,111,255,0.4), transparent);
+    height: 1px;
+  }
+
+  .why-points { list-style: none; }
+  .why-points li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    align-items: flex-start;
+  }
+
+  .why-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(61,111,255,0.1);
+    border: 1px solid rgba(61,111,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .why-point-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+  .why-point-text { color: var(--text-muted); font-size: 0.87rem; line-height: 1.6; }
+
+  /* INDUSTRIES */
+  #industries { background: var(--navy-mid); }
+
+  .industries-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .industry-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    transition: all 0.2s;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .industry-pill:hover {
+    background: rgba(61,111,255,0.1);
+    border-color: rgba(61,111,255,0.3);
+    color: var(--white);
+  }
+
+  /* TEAM */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .team-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .team-card:hover { border-color: rgba(61,111,255,0.3); transform: translateY(-4px); }
+
+  .team-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+
+  .team-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+  .team-role { color: var(--text-muted); font-size: 0.82rem; }
+
+  /* CONTACT */
+  #contact { background: var(--navy-light); }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
     align-items: start;
   }
 
-  .contact-info { }
-  .contact-info p {
-    font-size: 0.82rem;
-    line-height: 1.9;
-    color: var(--muted);
-    margin-top: 24px;
-    margin-bottom: 40px;
+  .contact-info-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
   }
-  .contact-detail {
+
+  .contact-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: rgba(61,111,255,0.12);
+    border: 1px solid rgba(61,111,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .contact-value { font-size: 0.95rem; color: var(--white); }
+
+  .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
-  .contact-row {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .contact-row span:first-child { color: var(--accent); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; min-width: 60px; }
 
-  form { display: flex; flex-direction: column; gap: 16px; }
-  .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
   input, textarea, select {
-    background: var(--surface);
+    width: 100%;
+    background: rgba(255,255,255,0.04);
     border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    padding: 16px 20px;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
     outline: none;
     transition: border-color 0.2s;
-    width: 100%;
-    resize: vertical;
   }
-  input::placeholder, textarea::placeholder { color: var(--muted); }
-  input:focus, textarea:focus { border-color: var(--accent); }
-  textarea { min-height: 120px; }
+  input:focus, textarea:focus { border-color: rgba(61,111,255,0.5); }
+  input::placeholder, textarea::placeholder { color: var(--text-muted); }
+  textarea { resize: vertical; min-height: 120px; }
+
+  .submit-btn {
+    background: var(--electric);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { background: var(--electric-bright); }
 
   /* FOOTER */
   footer {
-    padding: 40px 60px;
+    background: #060a1e;
     border-top: 1px solid var(--border);
+    padding: 3rem 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.5rem;
   }
-  footer p { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
-  .footer-links { display: flex; gap: 30px; }
-  .footer-links a { font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--accent); }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .footer-logo span { color: var(--saffron); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
   /* ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* Terminal blink */
-  .blink {
-    display: inline-block;
-    width: 3px; height: 1.1em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    animation: blink 1s step-end infinite;
-    margin-left: 4px;
+  .animate-on-scroll { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .why-grid, .contact-layout { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
   }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--accent); }
-
-  @media (max-width: 1024px) {
-    nav { padding: 18px 30px; }
-    nav ul { gap: 20px; }
-    .hero { padding: 100px 30px 60px; }
-    section { padding: 70px 30px; }
-    .services-grid, .pricing-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .process-steps::before { display: none; }
-    .stack-grid { grid-template-columns: repeat(3,1fr); }
-    .contact-inner { grid-template-columns: 1fr; }
-    .hero-stats { position: static; flex-direction: row; gap: 40px; margin-top: 60px; text-align: left; }
-    footer { flex-direction: column; text-align: center; }
-    .input-group { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 640px) {
-    nav ul { display: none; }
-    h1 { font-size: 2.8rem; }
-    .stack-grid { grid-template-columns: repeat(2,1fr); }
+  @media (max-width: 600px) {
+    h1 { font-size: 2.5rem; letter-spacing: -1px; }
+    .hero-buttons { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">ZUNED <span>Tech India</span></a>
-  <ul>
+  <a href="#" class="logo">
+    <div class="logo-icon">ZT</div>
+    Zuned<span>Tech</span>
+  </a>
+  <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    <li><a href="#why-us">About</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="grid-bg"></div>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-
-  <div class="hero-label">IT Infrastructure & Web Development</div>
-
-  <h1>
-    We build<br>
-    <em>digital</em><br>
-    infrastructure<span class="blink"></span>
-  </h1>
-
-  <p class="hero-sub">
-    From cloud architecture to pixel-perfect web applications — ZUNED Tech India delivers enterprise-grade IT solutions and cutting-edge web development for businesses that demand excellence.
-  </p>
-
-  <div class="hero-btns">
-    <a href="#services" class="btn-primary">Explore Services</a>
-    <a href="#contact" class="btn-ghost">Start a Project</a>
-  </div>
-
-  <div class="hero-stats">
-    <div>
-      <div class="stat-val">200+</div>
-      <div class="stat-label">Projects Delivered</div>
+  <div class="hero-orb"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      New Delhi, India · Est. 2016
     </div>
-    <div>
-      <div class="stat-val">99.9%</div>
-      <div class="stat-label">Uptime SLA</div>
-    </div>
-    <div>
-      <div class="stat-val">8yr</div>
-      <div class="stat-label">Industry Experience</div>
+    <h1>
+      Engineering<br>
+      <span class="accent">Digital</span> Futures<br>
+      for <span class="saffron">India</span>
+    </h1>
+    <p class="hero-sub">
+      Zuned Tech delivers world-class software solutions, cloud architecture, and AI-driven products — built in the heart of New Delhi for global ambitions.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">
+        Start a Project
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#services" class="btn-secondary">Explore Services</a>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span>Cloud Infrastructure</span>
-    <span>Web Development</span>
-    <span>Cybersecurity</span>
-    <span>DevOps & CI/CD</span>
-    <span>Network Design</span>
-    <span>React & Next.js</span>
-    <span>Server Management</span>
-    <span>Database Architecture</span>
-    <span>Cloud Infrastructure</span>
-    <span>Web Development</span>
-    <span>Cybersecurity</span>
-    <span>DevOps & CI/CD</span>
-    <span>Network Design</span>
-    <span>React & Next.js</span>
-    <span>Server Management</span>
-    <span>Database Architecture</span>
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-num">200<span class="saffron">+</span></div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">8<span class="saffron">+</span></div>
+    <div class="stat-label">Years of Experience</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">50<span class="saffron">+</span></div>
+    <div class="stat-label">Engineers & Designers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">30<span class="saffron">+</span></div>
+    <div class="stat-label">Global Clients</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">98<span class="saffron">%</span></div>
+    <div class="stat-label">Client Satisfaction</div>
   </div>
 </div>
 
 <!-- SERVICES -->
-<section class="services" id="services">
-  <div class="services-header">
-    <div>
-      <div class="section-label">What We Do</div>
-      <h2>Full-spectrum<br>IT Solutions</h2>
-    </div>
-    <a href="#contact" class="btn-ghost">View All Services</a>
-  </div>
+<section id="services" class="animate-on-scroll">
+  <div class="section-tag">What We Do</div>
+  <h2>Our <span class="accent">Services</span></h2>
+  <p class="section-desc">From concept to deployment, we craft technology that moves businesses forward — with precision, speed, and lasting quality.</p>
 
   <div class="services-grid">
-    <div class="service-card fade-up">
-      <div class="service-num">01</div>
-      <span class="service-icon">🏗️</span>
-      <h3>IT Infrastructure</h3>
-      <p class="service-desc">Design, deployment and management of scalable, resilient IT infrastructure — from on-premise servers to hybrid cloud environments tailored to your workload.</p>
-      <div class="service-tags">
-        <span class="tag">AWS</span>
-        <span class="tag">Azure</span>
-        <span class="tag">VMware</span>
-        <span class="tag">Networking</span>
-      </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">💻</div>
+      <h3>Custom Software Development</h3>
+      <p>Bespoke web and mobile applications built with modern stacks — React, Node.js, Python, Flutter — tailored to your exact business logic.</p>
     </div>
-
-    <div class="service-card fade-up">
-      <div class="service-num">02</div>
-      <span class="service-icon">💻</span>
-      <h3>Web Development</h3>
-      <p class="service-desc">Crafting high-performance web applications with modern frameworks. From marketing sites to full-stack SaaS platforms — we build products that convert and scale.</p>
-      <div class="service-tags">
-        <span class="tag">React</span>
-        <span class="tag">Next.js</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">TypeScript</span>
-      </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">☁️</div>
+      <h3>Cloud Architecture & DevOps</h3>
+      <p>Scalable, resilient cloud infrastructure on AWS, GCP, and Azure. CI/CD pipelines, containerisation, and full DevOps lifecycle management.</p>
     </div>
-
-    <div class="service-card fade-up">
-      <div class="service-num">03</div>
-      <span class="service-icon">☁️</span>
-      <h3>Cloud Architecture</h3>
-      <p class="service-desc">Migrate to the cloud or optimize existing workloads. We architect multi-region, fault-tolerant systems with cost efficiency and security at the core.</p>
-      <div class="service-tags">
-        <span class="tag">Kubernetes</span>
-        <span class="tag">Docker</span>
-        <span class="tag">Terraform</span>
-        <span class="tag">GCP</span>
-      </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">🤖</div>
+      <h3>AI & Machine Learning</h3>
+      <p>Intelligent systems that learn and adapt. NLP, computer vision, predictive analytics, and LLM integration for your enterprise stack.</p>
     </div>
-
-    <div class="service-card fade-up">
-      <div class="service-num">04</div>
-      <span class="service-icon">🔐</span>
-      <h3>Cybersecurity</h3>
-      <p class="service-desc">End-to-end security audits, penetration testing, and implementation of enterprise-grade security policies. Protect your data and stay compliant.</p>
-      <div class="service-tags">
-        <span class="tag">Pen Testing</span>
-        <span class="tag">SIEM</span>
-        <span class="tag">Zero Trust</span>
-        <span class="tag">ISO 27001</span>
-      </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">📱</div>
+      <h3>Mobile App Development</h3>
+      <p>Cross-platform iOS and Android applications with native performance. Flutter and React Native for fast, beautiful, and reliable experiences.</p>
     </div>
-
-    <div class="service-card fade-up">
-      <div class="service-num">05</div>
-      <span class="service-icon">⚙️</span>
-      <h3>DevOps & CI/CD</h3>
-      <p class="service-desc">Automate your deployment pipeline, reduce release cycles, and increase team velocity with modern DevOps practices and tooling.</p>
-      <div class="service-tags">
-        <span class="tag">GitHub Actions</span>
-        <span class="tag">Jenkins</span>
-        <span class="tag">Ansible</span>
-        <span class="tag">Prometheus</span>
-      </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">🛡️</div>
+      <h3>Cybersecurity & Compliance</h3>
+      <p>Comprehensive security audits, penetration testing, ISO/IEC compliance frameworks, and ongoing threat monitoring to protect your data.</p>
     </div>
+    <div class="service-card">
+      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">🎨</div>
+      <h3>UI/UX Design</h3>
+      <p>Research-driven design that converts. From wireframes to polished design systems — every pixel serves a purpose and every flow delights users.</p>
+    </div>
+  </div>
+</section>
 
-    <div class="service-card fade-up">
-      <div class="service-num">06</div>
-      <span class="service-icon">🗄️</span>
-      <h3>Database Management</h3>
-      <p class="service-desc">Design and manage high-availability database systems. Performance tuning, backup strategies, and migrations handled by certified DBAs.</p>
-      <div class="service-tags">
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">Redis</span>
-        <span class="tag">MySQL</span>
+<!-- WHY US -->
+<section id="why-us">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag">Why Zuned Tech</div>
+      <h2>Built on<br><span class="accent">Trust</span> & Results</h2>
+      <p class="section-desc">We're not just a vendor — we're your long-term technology partner, invested in your success at every milestone.</p>
+
+      <ul class="why-points">
+        <li>
+          <div class="why-icon">🚀</div>
+          <div>
+            <div class="why-point-title">Speed Without Sacrifice</div>
+            <div class="why-point-text">Agile sprints and rapid prototyping mean you see results in weeks, not months — with zero cut corners on quality.</div>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">🌏</div>
+          <div>
+            <div class="why-point-title">India's Best, World-Ready</div>
+            <div class="why-point-text">Top-tier engineers trained at IITs and premier institutions, delivering global-standard solutions from New Delhi.</div>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">🤝</div>
+          <div>
+            <div class="why-point-title">Transparent Partnership</div>
+            <div class="why-point-text">Weekly updates, live dashboards, and a dedicated account manager. You're always in the loop — no surprises.</div>
+          </div>
+        </li>
+        <li>
+          <div class="why-icon">📈</div>
+          <div>
+            <div class="why-point-title">Outcome-Focused Engineering</div>
+            <div class="why-point-text">We measure success in your growth metrics — not just deliverables. Every technical decision ties back to your business goals.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-card">
+        <div class="why-card-icon">⚡</div>
+        <div class="why-card-title">2-Week Sprint Cycles</div>
+        <div class="why-card-text">Continuous delivery with measurable progress at every stage.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🔒</div>
+        <div class="why-card-title">Enterprise Security</div>
+        <div class="why-card-text">SOC 2 aligned processes and data protection by default.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🌐</div>
+        <div class="why-card-title">24/7 Support SLA</div>
+        <div class="why-card-text">Dedicated support with guaranteed response times.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">📊</div>
+        <div class="why-card-title">Live Project Dashboard</div>
+        <div class="why-card-text">Real-time visibility into progress, costs, and timelines.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process" id="process">
-  <div class="section-label">How We Work</div>
-  <h2>From Brief to<br>Live in 4 Phases</h2>
+<!-- INDUSTRIES -->
+<section id="industries" class="animate-on-scroll">
+  <div class="section-tag">Verticals</div>
+  <h2>Industries We <span class="accent">Serve</span></h2>
+  <p class="section-desc">Deep domain knowledge across sectors means faster ramp-ups and better-fit solutions from day one.</p>
 
-  <div class="process-steps">
-    <div class="step fade-up">
-      <div class="step-num">01</div>
-      <h4>Discovery</h4>
-      <p>We deep-dive into your business requirements, technical constraints, and goals to craft a precise roadmap and architecture plan.</p>
-    </div>
-    <div class="step fade-up">
-      <div class="step-num">02</div>
-      <h4>Architecture</h4>
-      <p>System design, tech stack selection, and infrastructure blueprinting. Every decision is documented and reviewed with your team.</p>
-    </div>
-    <div class="step fade-up">
-      <div class="step-num">03</div>
-      <h4>Build & Test</h4>
-      <p>Agile sprints with continuous integration. Automated testing, staging environments, and full QA before anything hits production.</p>
-    </div>
-    <div class="step fade-up">
-      <div class="step-num">04</div>
-      <h4>Deploy & Support</h4>
-      <p>Zero-downtime deployments, monitoring setup, and ongoing 24/7 support with SLA-backed response times.</p>
-    </div>
+  <div class="industries-grid">
+    <div class="industry-pill">🏦 Banking & FinTech</div>
+    <div class="industry-pill">🏥 Healthcare & MedTech</div>
+    <div class="industry-pill">🛒 eCommerce & Retail</div>
+    <div class="industry-pill">🎓 EdTech & Learning</div>
+    <div class="industry-pill">🏗️ Real Estate & PropTech</div>
+    <div class="industry-pill">🚚 Logistics & Supply Chain</div>
+    <div class="industry-pill">⚡ Energy & Utilities</div>
+    <div class="industry-pill">🏛️ Government & Public Sector</div>
+    <div class="industry-pill">🎮 Gaming & Entertainment</div>
+    <div class="industry-pill">🌾 AgriTech</div>
+    <div class="industry-pill">✈️ Travel & Hospitality</div>
+    <div class="industry-pill">🔬 Research & Deep Tech</div>
   </div>
 </section>
 
-<!-- TECH STACK -->
-<section class="stack" id="stack">
-  <div class="stack-header">
-    <div class="section-label">Technologies</div>
-    <h2>Our Tech Stack</h2>
-  </div>
+<!-- TEAM -->
+<section id="team" class="animate-on-scroll">
+  <div class="section-tag">The People</div>
+  <h2>Meet Our <span class="accent">Leadership</span></h2>
+  <p class="section-desc">A team forged from India's finest engineering talent and global industry experience.</p>
 
-  <div class="stack-grid">
-    <div class="stack-item fade-up"><span class="stack-icon">⚛️</span><div class="stack-name">React</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">▲</span><div class="stack-name">Next.js</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🟦</span><div class="stack-name">TypeScript</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🐍</span><div class="stack-name">Python</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🟩</span><div class="stack-name">Node.js</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🐋</span><div class="stack-name">Docker</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">☸️</span><div class="stack-name">Kubernetes</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🌩️</span><div class="stack-name">AWS</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🔵</span><div class="stack-name">Azure</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">📦</span><div class="stack-name">Terraform</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🐘</span><div class="stack-name">PostgreSQL</div></div>
-    <div class="stack-item fade-up"><span class="stack-icon">🍃</span><div class="stack-name">MongoDB</div></div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-label">Pricing</div>
-  <h2>Transparent,<br>Scalable Plans</h2>
-
-  <div class="pricing-grid">
-    <div class="pricing-card fade-up">
-      <div class="price-label">Starter</div>
-      <div class="price-val">₹49K</div>
-      <div class="price-sub">/ month — small teams</div>
-      <ul class="price-items">
-        <li class="price-item">Up to 5 pages web development</li>
-        <li class="price-item">Basic cloud hosting setup</li>
-        <li class="price-item">SSL & security configuration</li>
-        <li class="price-item">Monthly maintenance report</li>
-        <li class="price-item">Email support (48hr SLA)</li>
-      </ul>
-      <a href="#contact" class="btn-ghost" style="width:100%;text-align:center;display:block;">Get Started</a>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #3d6fff, #5c85ff);">ZA</div>
+      <div class="team-name">Zuned Ahmed</div>
+      <div class="team-role">Founder & CEO</div>
     </div>
-
-    <div class="pricing-card featured fade-up">
-      <div class="price-label">Professional</div>
-      <div class="price-val">₹1.2L</div>
-      <div class="price-sub">/ month — growing businesses</div>
-      <ul class="price-items">
-        <li class="price-item">Full-stack web application</li>
-        <li class="price-item">Managed cloud infrastructure</li>
-        <li class="price-item">CI/CD pipeline setup</li>
-        <li class="price-item">24/7 monitoring & alerts</li>
-        <li class="price-item">Priority support (4hr SLA)</li>
-        <li class="price-item">Monthly performance review</li>
-      </ul>
-      <a href="#contact" class="btn-primary" style="width:100%;text-align:center;display:block;background:#ffffff;color:var(--accent)">Most Popular</a>
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #ff8c00, #ffa333);">PR</div>
+      <div class="team-name">Priya Rajan</div>
+      <div class="team-role">CTO & Head of Engineering</div>
     </div>
-
-    <div class="pricing-card fade-up">
-      <div class="price-label">Enterprise</div>
-      <div class="price-val">Custom</div>
-      <div class="price-sub">/ tailored to scale</div>
-      <ul class="price-items">
-        <li class="price-item">Dedicated engineering team</li>
-        <li class="price-item">Multi-region infrastructure</li>
-        <li class="price-item">Security audits & compliance</li>
-        <li class="price-item">Disaster recovery planning</li>
-        <li class="price-item">1hr SLA, dedicated Slack</li>
-        <li class="price-item">Quarterly architecture review</li>
-      </ul>
-      <a href="#contact" class="btn-ghost" style="width:100%;text-align:center;display:block;">Contact Sales</a>
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #1d9e75, #5dcaa5);">AS</div>
+      <div class="team-name">Arjun Sharma</div>
+      <div class="team-role">VP of Product Design</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #993556, #d4537e);">NK</div>
+      <div class="team-name">Nadia Khan</div>
+      <div class="team-role">Head of Client Success</div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="contact-info">
-      <div class="section-label">Get In Touch</div>
-      <h2>Let's Build<br>Something Great</h2>
-      <p>Tell us about your project. Whether you need a full infrastructure overhaul or a fast-turnaround web app, we'll scope it, price it, and deliver it.</p>
-      <div class="contact-detail">
-        <div class="contact-row">
-          <span>Email</span>
-          <span>hello@zunedtech.in</span>
+<section id="contact" class="animate-on-scroll">
+  <div class="section-tag">Get in Touch</div>
+  <h2>Let's Build <span class="accent">Something</span></h2>
+  <p class="section-desc">Ready to start? Drop us a message and we'll get back within one business day.</p>
+
+  <div class="contact-layout">
+    <div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Office</div>
+          <div class="contact-value">Connaught Place, New Delhi — 110001, India</div>
         </div>
-        <div class="contact-row">
-          <span>Phone</span>
-          <span>+91 98765 43210</span>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">hello@zunedtech.in</div>
         </div>
-        <div class="contact-row">
-          <span>Office</span>
-          <span>Sector 62, Noida, Delhi NCR</span>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+91 98110 00000</div>
         </div>
-        <div class="contact-row">
-          <span>Hours</span>
-          <span>Mon–Sat, 9AM–7PM IST</span>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Working Hours</div>
+          <div class="contact-value">Mon – Sat, 9:00 AM – 7:00 PM IST</div>
         </div>
       </div>
     </div>
 
-    <form onsubmit="handleSubmit(event)">
-      <div class="input-group">
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email Address" required>
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email Address">
       </div>
-      <div class="input-group">
-        <input type="tel" placeholder="Phone Number">
-        <input type="text" placeholder="Company Name">
-      </div>
-      <select>
-        <option value="" disabled selected style="color:var(--muted)">Service Required</option>
-        <option>IT Infrastructure</option>
-        <option>Web Development</option>
-        <option>Cloud Architecture</option>
+      <input type="text" placeholder="Company Name">
+      <select style="color: var(--text-muted);">
+        <option value="" disabled selected>Select a Service</option>
+        <option>Custom Software Development</option>
+        <option>Cloud Architecture & DevOps</option>
+        <option>AI & Machine Learning</option>
+        <option>Mobile App Development</option>
         <option>Cybersecurity</option>
-        <option>DevOps & CI/CD</option>
-        <option>Database Management</option>
-        <option>Full Package</option>
+        <option>UI/UX Design</option>
       </select>
-      <textarea placeholder="Describe your project or requirements..."></textarea>
-      <button type="submit" class="btn-primary" style="width:100%">Send Message →</button>
+      <textarea placeholder="Tell us about your project..."></textarea>
+      <button type="submit" class="submit-btn">Send Message →</button>
     </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="logo" style="font-size:1.1rem">ZUNED <span>Tech India</span></a>
-  <p>© 2026 ZUNED Tech India Pvt. Ltd. — Delhi NCR, India</p>
-  <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">GitHub</a>
-  </div>
+  <a href="#" class="footer-logo">Zuned<span>Tech</span> India</a>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">About</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2024 Zuned Tech India. All rights reserved.</div>
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-      ring.style.left = e.clientX + 'px';
-      ring.style.top = e.clientY + 'px';
-    }, 80);
-  });
-  document.querySelectorAll('a, button, .service-card, .stack-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '20px';
-      cursor.style.height = '20px';
-      ring.style.width = '52px';
-      ring.style.height = '52px';
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
     });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '12px';
-      cursor.style.height = '12px';
-      ring.style.width = '36px';
-      ring.style.height = '36px';
-    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+  document.querySelector('.submit-btn').addEventListener('click', function() {
+    this.textContent = 'Message Sent ✓';
+    this.style.background = '#1d9e75';
+    setTimeout(() => { this.textContent = 'Send Message →'; this.style.background = ''; }, 3000);
   });
-
-  // Scroll animations
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 100);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach((el, i) => {
-    el.style.transitionDelay = (i % 3) * 0.1 + 's';
-    observer.observe(el);
-  });
-
-  // Nav scroll effect
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.padding = window.scrollY > 50 ? '14px 60px' : '20px 60px';
-  });
-
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = 'var(--accent3)';
-    btn.style.color = 'var(--bg)';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-      btn.style.color = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 3000);
-  }
 </script>
 </body>
 </html>
