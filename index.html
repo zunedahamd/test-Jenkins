@@ -1,905 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zuned Tech India — New Delhi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #0a0f2e;
-    --navy-mid: #111740;
-    --navy-light: #1c2460;
-    --electric: #3d6fff;
-    --electric-bright: #5c85ff;
-    --saffron: #ff8c00;
-    --saffron-light: #ffa333;
-    --white: #ffffff;
-    --off-white: #f0f2ff;
-    --text-muted: #8b92b8;
-    --text-mid: #c5cadf;
-    --border: rgba(255,255,255,0.08);
-    --glow: rgba(61,111,255,0.18);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* GRID NOISE TEXTURE */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(61,111,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(61,111,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 6%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10,15,46,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: -0.5px;
-    color: var(--white);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo-icon {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, var(--electric), var(--saffron));
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    font-weight: 800;
-    color: #fff;
-    flex-shrink: 0;
-  }
-
-  .logo span { color: var(--saffron); }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-mid);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color 0.2s;
-    letter-spacing: 0.3px;
-  }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--electric);
-    color: #fff !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
-    font-weight: 500 !important;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--electric-bright) !important; color: #fff !important; }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 6% 5rem;
-    overflow: hidden;
-  }
-
-  .hero-orb {
-    position: absolute;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(61,111,255,0.18) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    pointer-events: none;
-  }
-
-  .hero-orb-2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,140,0,0.1) 0%, transparent 70%);
-    bottom: -50px; left: 10%;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 680px;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(61,111,255,0.12);
-    border: 1px solid rgba(61,111,255,0.3);
-    border-radius: 100px;
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
-    color: var(--electric-bright);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 2rem;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .badge-dot {
-    width: 6px; height: 6px;
-    background: var(--saffron);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1.05;
-    letter-spacing: -1.5px;
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  h1 .accent { color: var(--electric-bright); }
-  h1 .saffron { color: var(--saffron); }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--electric);
-    color: #fff;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .btn-primary:hover { background: var(--electric-bright); transform: translateY(-2px); }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--text-mid);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 0.95rem;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
-
-  /* STATS */
-  .stats-strip {
-    position: relative;
-    z-index: 1;
-    background: var(--navy-mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 2.5rem 6%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 2.2rem;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .stat-num .saffron { color: var(--saffron); }
-  .stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.4px; }
-
-  /* SECTIONS */
-  section { position: relative; padding: 6rem 6%; }
-
-  .section-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--electric-bright);
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.8px;
-    line-height: 1.15;
-    margin-bottom: 1.2rem;
-  }
-
-  h2 .accent { color: var(--electric-bright); }
-
-  .section-desc {
-    color: var(--text-muted);
-    max-width: 540px;
-    font-size: 1rem;
-    margin-bottom: 3.5rem;
-    line-height: 1.7;
-  }
-
-  /* SERVICES */
-  #services { background: var(--navy-mid); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .service-card {
-    background: var(--navy-mid);
-    padding: 2.5rem 2rem;
-    transition: background 0.2s;
-    cursor: default;
-  }
-  .service-card:hover { background: var(--navy-light); }
-
-  .service-icon {
-    width: 52px; height: 52px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .service-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 1.15rem;
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.3px;
-  }
-
-  .service-card p {
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    line-height: 1.65;
-  }
-
-  /* WHY US */
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  .why-visual {
-    position: relative;
-    height: 440px;
-  }
-
-  .why-card {
-    position: absolute;
-    background: var(--navy-mid);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.5rem;
-    width: 220px;
-  }
-
-  .why-card:nth-child(1) { top: 0; left: 0; }
-  .why-card:nth-child(2) { top: 80px; right: 0; border-color: rgba(61,111,255,0.3); }
-  .why-card:nth-child(3) { bottom: 40px; left: 40px; }
-  .why-card:nth-child(4) { bottom: 0; right: 0; }
-
-  .why-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-  .why-card-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
-  .why-card-text { color: var(--text-muted); font-size: 0.8rem; line-height: 1.6; }
-
-  .connector-line {
-    position: absolute;
-    background: linear-gradient(90deg, rgba(61,111,255,0.4), transparent);
-    height: 1px;
-  }
-
-  .why-points { list-style: none; }
-  .why-points li {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-    align-items: flex-start;
-  }
-
-  .why-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    background: rgba(61,111,255,0.1);
-    border: 1px solid rgba(61,111,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .why-point-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
-  .why-point-text { color: var(--text-muted); font-size: 0.87rem; line-height: 1.6; }
-
-  /* INDUSTRIES */
-  #industries { background: var(--navy-mid); }
-
-  .industries-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .industry-pill {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 0.6rem 1.4rem;
-    font-size: 0.88rem;
-    color: var(--text-mid);
-    transition: all 0.2s;
-    cursor: default;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .industry-pill:hover {
-    background: rgba(61,111,255,0.1);
-    border-color: rgba(61,111,255,0.3);
-    color: var(--white);
-  }
-
-  /* TEAM */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .team-card {
-    background: var(--navy-mid);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .team-card:hover { border-color: rgba(61,111,255,0.3); transform: translateY(-4px); }
-
-  .team-avatar {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: #fff;
-  }
-
-  .team-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
-  .team-role { color: var(--text-muted); font-size: 0.82rem; }
-
-  /* CONTACT */
-  #contact { background: var(--navy-light); }
-
-  .contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .contact-info-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    margin-bottom: 1.75rem;
-  }
-
-  .contact-icon {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: rgba(61,111,255,0.12);
-    border: 1px solid rgba(61,111,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .contact-label { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
-  .contact-value { font-size: 0.95rem; color: var(--white); }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  input, textarea, select {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  input:focus, textarea:focus { border-color: rgba(61,111,255,0.5); }
-  input::placeholder, textarea::placeholder { color: var(--text-muted); }
-  textarea { resize: vertical; min-height: 120px; }
-
-  .submit-btn {
-    background: var(--electric);
-    color: #fff;
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: background 0.2s;
-    align-self: flex-start;
-  }
-  .submit-btn:hover { background: var(--electric-bright); }
-
-  /* FOOTER */
-  footer {
-    background: #060a1e;
-    border-top: 1px solid var(--border);
-    padding: 3rem 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.3rem;
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .footer-logo span { color: var(--saffron); }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-
-  .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-on-scroll { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .why-grid, .contact-layout { grid-template-columns: 1fr; }
-    .why-visual { display: none; }
-    .form-row { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-  }
-
-  @media (max-width: 600px) {
-    h1 { font-size: 2.5rem; letter-spacing: -1px; }
-    .hero-buttons { flex-direction: column; }
-    .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudNova Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0b1020;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(11,16,32,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #4da3ff;
+    }
+
+    nav a {
+      margin-left: 25px;
+      color: #d7def5;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #4da3ff;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 8% 50px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .hero-text h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      color: #4da3ff;
+    }
+
+    .hero-text p {
+      color: #b5c0dd;
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(90deg,#4da3ff,#2563eb);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      flex: 1;
+      min-width: 320px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(77,163,255,0.15);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 20px;
+      color: #4da3ff;
+      font-size: 28px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card li {
+      margin-bottom: 18px;
+      color: #dbe5ff;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: #4da3ff;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #b5c0dd;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 25px;
+    }
+
+    .service-box {
+      background: rgba(255,255,255,0.04);
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+      border-color: #4da3ff;
+    }
+
+    .service-box h3 {
+      margin: 20px 0 12px;
+      color: #4da3ff;
+    }
+
+    .service-box p {
+      color: #c3cde6;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      padding: 35px;
+      border-radius: 16px;
+    }
+
+    .stat h3 {
+      font-size: 40px;
+      color: #4da3ff;
+      margin-bottom: 10px;
+    }
+
+    .contact {
+      background: linear-gradient(135deg,#111936,#0b1020);
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: #c8d4f1;
+      margin-bottom: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #9ba8c7;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 50px;
+    }
+
+    @media(max-width:768px){
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-icon">ZT</div>
-    Zuned<span>Tech</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#why-us">About</a></li>
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
-  </ul>
-</nav>
+<header>
+  <div class="logo">CloudNova</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#stats">Stats</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-orb"></div>
-  <div class="hero-orb-2"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      New Delhi, India · Est. 2016
-    </div>
-    <h1>
-      Engineering<br>
-      <span class="accent">Digital</span> Futures<br>
-      for <span class="saffron">New Delhi India</span>
-    </h1>
-    <p class="hero-sub">
-      Zuned Tech delivers world-class software solutions, cloud architecture, and AI-driven products — built in the heart of New Delhi for global ambitions.
+  <div class="hero-text">
+    <h1>Build Modern <span>Cloud & DevOps</span> Solutions</h1>
+    <p>
+      We help startups and enterprises deploy scalable cloud infrastructure,
+      CI/CD pipelines, Kubernetes platforms, and enterprise-grade applications.
     </p>
-    <div class="hero-buttons">
-      <a href="#contact" class="btn-primary">
-        Start a Project
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#services" class="btn-secondary">Explore Services</a>
+    <a href="#contact" class="btn">Start Project</a>
+  </div>
+
+  <div class="hero-card">
+    <h3>Technology Stack</h3>
+    <ul>
+      <li>Docker & Kubernetes</li>
+      <li>Jenkins CI/CD Pipelines</li>
+      <li>AWS / Azure Cloud</li>
+      <li>DevOps Automation</li>
+      <li>Modern Web Applications</li>
+    </ul>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-title">
+    <h2>Our Services</h2>
+    <p>Enterprise-ready solutions designed for modern businesses.</p>
+  </div>
+
+  <div class="services">
+    <div class="service-box">
+      <h3>DevOps Automation</h3>
+      <p>Automated deployment pipelines using Jenkins, GitHub Actions, Docker, and Kubernetes.</p>
+    </div>
+
+    <div class="service-box">
+      <h3>Cloud Infrastructure</h3>
+      <p>Scalable cloud architecture on AWS, Azure, and Google Cloud Platform.</p>
+    </div>
+
+    <div class="service-box">
+      <h3>Web Development</h3>
+      <p>Responsive and modern websites built using the latest frontend technologies.</p>
+    </div>
+
+    <div class="service-box">
+      <h3>ERP Solutions</h3>
+      <p>Business automation systems for logistics, aviation, finance, and operations.</p>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat">
-    <div class="stat-num">200<span class="saffron">+</span></div>
-    <div class="stat-label">Projects Delivered</div>
+<section id="about">
+  <div class="section-title">
+    <h2>Why Choose Us</h2>
+    <p>Reliable engineering and production-ready deployments.</p>
   </div>
-  <div class="stat">
-    <div class="stat-num">8<span class="saffron">+</span></div>
-    <div class="stat-label">Years of Experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">50<span class="saffron">+</span></div>
-    <div class="stat-label">Engineers & Designers</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">30<span class="saffron">+</span></div>
-    <div class="stat-label">Global Clients</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">98<span class="saffron">%</span></div>
-    <div class="stat-label">Client Satisfaction</div>
-  </div>
-</div>
 
-<!-- SERVICES -->
-<section id="services" class="animate-on-scroll">
-  <div class="section-tag">What We Do</div>
-  <h2>Our <span class="accent">Services</span></h2>
-  <p class="section-desc">From concept to deployment, we craft technology that moves businesses forward — with precision, speed, and lasting quality.</p>
+  <div class="stats" id="stats">
+    <div class="stat">
+      <h3>12+</h3>
+      <p>Years Experience</p>
+    </div>
 
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">💻</div>
-      <h3>Custom Software Development</h3>
-      <p>Bespoke web and mobile applications built with modern stacks — React, Node.js, Python, Flutter — tailored to your exact business logic.</p>
+    <div class="stat">
+      <h3>50+</h3>
+      <p>Projects Delivered</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">☁️</div>
-      <h3>Cloud Architecture & DevOps</h3>
-      <p>Scalable, resilient cloud infrastructure on AWS, GCP, and Azure. CI/CD pipelines, containerisation, and full DevOps lifecycle management.</p>
+
+    <div class="stat">
+      <h3>99%</h3>
+      <p>Deployment Success</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">🤖</div>
-      <h3>AI & Machine Learning</h3>
-      <p>Intelligent systems that learn and adapt. NLP, computer vision, predictive analytics, and LLM integration for your enterprise stack.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">📱</div>
-      <h3>Mobile App Development</h3>
-      <p>Cross-platform iOS and Android applications with native performance. Flutter and React Native for fast, beautiful, and reliable experiences.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(61,111,255,0.12); border: 1px solid rgba(61,111,255,0.25);">🛡️</div>
-      <h3>Cybersecurity & Compliance</h3>
-      <p>Comprehensive security audits, penetration testing, ISO/IEC compliance frameworks, and ongoing threat monitoring to protect your data.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background: rgba(255,140,0,0.1); border: 1px solid rgba(255,140,0,0.2);">🎨</div>
-      <h3>UI/UX Design</h3>
-      <p>Research-driven design that converts. From wireframes to polished design systems — every pixel serves a purpose and every flow delights users.</p>
+
+    <div class="stat">
+      <h3>24/7</h3>
+      <p>Support & Monitoring</p>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why-us">
-  <div class="why-grid">
-    <div>
-      <div class="section-tag">Why Zuned IT Solution</div>
-      <h2>Built on<br><span class="accent">Trust</span> & Results</h2>
-      <p class="section-desc">We're not just a vendor — we're your long-term technology partner, invested in your success at every milestone.</p>
-
-      <ul class="why-points">
-        <li>
-          <div class="why-icon">🚀</div>
-          <div>
-            <div class="why-point-title">Speed Without Sacrifice</div>
-            <div class="why-point-text">Agile sprints and rapid prototyping mean you see results in weeks, not months — with zero cut corners on quality.</div>
-          </div>
-        </li>
-        <li>
-          <div class="why-icon">🌏</div>
-          <div>
-            <div class="why-point-title">India's Best, World-Ready</div>
-            <div class="why-point-text">Top-tier engineers trained at IITs and premier institutions, delivering global-standard solutions from New Delhi.</div>
-          </div>
-        </li>
-        <li>
-          <div class="why-icon">🤝</div>
-          <div>
-            <div class="why-point-title">Transparent Partnership</div>
-            <div class="why-point-text">Weekly updates, live dashboards, and a dedicated account manager. You're always in the loop — no surprises.</div>
-          </div>
-        </li>
-        <li>
-          <div class="why-icon">📈</div>
-          <div>
-            <div class="why-point-title">Outcome-Focused Engineering</div>
-            <div class="why-point-text">We measure success in your growth metrics — not just deliverables. Every technical decision ties back to your business goals.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="why-visual">
-      <div class="why-card">
-        <div class="why-card-icon">⚡</div>
-        <div class="why-card-title">2-Week Sprint Cycles</div>
-        <div class="why-card-text">Continuous delivery with measurable progress at every stage.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-icon">🔒</div>
-        <div class="why-card-title">Enterprise Security</div>
-        <div class="why-card-text">SOC 2 aligned processes and data protection by default.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-icon">🌐</div>
-        <div class="why-card-title">24/7 Support SLA</div>
-        <div class="why-card-text">Dedicated support with guaranteed response times.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-icon">📊</div>
-        <div class="why-card-title">Live Project Dashboard</div>
-        <div class="why-card-text">Real-time visibility into progress, costs, and timelines.</div>
-      </div>
-    </div>
+<section>
+  <div class="contact" id="contact">
+    <h2>Ready to Launch?</h2>
+    <p>Deploy your next application with Docker, Jenkins, and Kubernetes.</p>
+    <a href="#" class="btn">Contact Us</a>
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<section id="industries" class="animate-on-scroll">
-  <div class="section-tag">Verticals</div>
-  <h2>Industries We <span class="accent">Serve</span></h2>
-  <p class="section-desc">Deep domain knowledge across sectors means faster ramp-ups and better-fit solutions from day one.</p>
-
-  <div class="industries-grid">
-    <div class="industry-pill">🏦 Banking & FinTech</div>
-    <div class="industry-pill">🏥 Healthcare & MedTech</div>
-    <div class="industry-pill">🛒 eCommerce & Retail</div>
-    <div class="industry-pill">🎓 EdTech & Learning</div>
-    <div class="industry-pill">🏗️ Real Estate & PropTech</div>
-    <div class="industry-pill">🚚 Logistics & Supply Chain</div>
-    <div class="industry-pill">⚡ Energy & Utilities</div>
-    <div class="industry-pill">🏛️ Government & Public Sector</div>
-    <div class="industry-pill">🎮 Gaming & Entertainment</div>
-    <div class="industry-pill">🌾 AgriTech</div>
-    <div class="industry-pill">✈️ Travel & Hospitality</div>
-    <div class="industry-pill">🔬 Research & Deep Tech</div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="animate-on-scroll">
-  <div class="section-tag">The People</div>
-  <h2>Meet Our <span class="accent">Leadership</span></h2>
-  <p class="section-desc">A team forged from India's finest engineering talent and global industry experience.</p>
-
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar" style="background: linear-gradient(135deg, #3d6fff, #5c85ff);">ZA</div>
-      <div class="team-name">Zuned Ahmed</div>
-      <div class="team-role">Founder & CEO</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar" style="background: linear-gradient(135deg, #ff8c00, #ffa333);">PR</div>
-      <div class="team-name">Priya Rajan</div>
-      <div class="team-role">CTO & Head of Engineering</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar" style="background: linear-gradient(135deg, #1d9e75, #5dcaa5);">AS</div>
-      <div class="team-name">Arjun Sharma</div>
-      <div class="team-role">VP of Product Design</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar" style="background: linear-gradient(135deg, #993556, #d4537e);">NK</div>
-      <div class="team-name">Nadia Khan</div>
-      <div class="team-role">Head of Client Success</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="animate-on-scroll">
-  <div class="section-tag">Get in Touch</div>
-  <h2>Let's Build <span class="accent">Something</span></h2>
-  <p class="section-desc">Ready to start? Drop us a message and we'll get back within one business day.</p>
-
-  <div class="contact-layout">
-    <div>
-      <div class="contact-info-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Office</div>
-          <div class="contact-value">Connaught Place, New Delhi — 110001, India</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">hello@zunedtech.in</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+91 98110 00000</div>
-        </div>
-      </div>
-      <div class="contact-info-item">
-        <div class="contact-icon">🕐</div>
-        <div>
-          <div class="contact-label">Working Hours</div>
-          <div class="contact-value">Mon – Sat, 9:00 AM – 7:00 PM IST</div>
-        </div>
-      </div>
-    </div>
-
-    <form class="contact-form" onsubmit="return false;">
-      <div class="form-row">
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Email Address">
-      </div>
-      <input type="text" placeholder="Company Name">
-      <select style="color: var(--text-muted);">
-        <option value="" disabled selected>Select a Service</option>
-        <option>Custom Software Development</option>
-        <option>Cloud Architecture & DevOps</option>
-        <option>AI & Machine Learning</option>
-        <option>Mobile App Development</option>
-        <option>Cybersecurity</option>
-        <option>UI/UX Design</option>
-      </select>
-      <textarea placeholder="Tell us about your project..."></textarea>
-      <button type="submit" class="submit-btn">Send Message →</button>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">Zuned<span>Tech</span> India</a>
-  <ul class="footer-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#why-us">About</a></li>
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="footer-copy">© 2024 Zuned Tech India. All rights reserved.</div>
+  © 2026 CloudNova Tech | Designed for DevOps & Cloud Deployment
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-  document.querySelector('.submit-btn').addEventListener('click', function() {
-    this.textContent = 'Message Sent ✓';
-    this.style.background = '#1d9e75';
-    setTimeout(() => { this.textContent = 'Send Message →'; this.style.background = ''; }, 3000);
-  });
-</script>
 </body>
 </html>

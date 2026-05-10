@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: static-site
-          image: my-new-erp-site:latest
+          image: my-new-erp-site:v3
           imagePullPolicy: Never
 
           ports:
